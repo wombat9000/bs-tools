@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  become: yes
+  become_user: "{{ lookup('env', 'USER') }}"
+  vars:
+    yubikey_dependencies: 
+      - gnupg2 
+      - scdaemon 
+      - pcscd 
+      
+  tasks:
+
+  - name: add yubikey deps
+    apt:
+      name: "{{ item }}"
+    with_items: "{{ yubikey_dependencies }}"
+
+  - name: enable ssh for gpg-agent
+    lineinfile:
+      path: ~/.gnupg/gpg-agent.conf
+      line: enable-ssh-support
+      create: yes
+
+  - name: add ssh auth sock config to bashrc
+    lineinfile:
+      path: ~/.bashrc
+      line: export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
