@@ -9,19 +9,5 @@
       - pcscd 
       
   tasks:
-
-  - name: add yubikey deps
-    apt:
-      name: "{{ item }}"
-    with_items: "{{ yubikey_dependencies }}"
-
-  - name: enable ssh for gpg-agent
-    lineinfile:
-      path: ~/.gnupg/gpg-agent.conf
-      line: enable-ssh-support
-      create: yes
-
-  - name: add ssh auth sock config to bashrc
-    lineinfile:
-      path: ~/.bashrc
-      line: export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    - import_tasks: tasks/zshell_setup.yml
+    - import_tasks: tasks/yubikey_ssh_setup.yml
