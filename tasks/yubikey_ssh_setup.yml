@@ -2,7 +2,10 @@
 - name: add yubikey deps
   apt:
     name: "{{ item }}"
-  with_items: "{{ yubikey_dependencies }}"
+  with_items: 
+    - gnupg2 
+    - scdaemon 
+    - pcscd 
 
 - name: enable ssh for gpg-agent
   lineinfile:

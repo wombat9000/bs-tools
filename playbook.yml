@@ -2,11 +2,6 @@
 - hosts: localhost
   become: yes
   become_user: "{{ lookup('env', 'USER') }}"
-  vars:
-    yubikey_dependencies: 
-      - gnupg2 
-      - scdaemon 
-      - pcscd 
       
   tasks:
     - import_tasks: tasks/zshell_setup.yml
