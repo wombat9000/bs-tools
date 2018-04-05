@@ -1,0 +1,22 @@
+---
+- name: add alacritty deps
+  become_user: root
+  apt:
+    name: "{{ item }}"
+  with_items: 
+    - cmake 
+    - libfreetype6-dev 
+    - libfontconfig1-dev 
+    - xclip
+
+- name: check for alacritty install
+  command: which alacritty
+  register: alacritty_installed
+  failed_when: alacritty_installed.rc > 1
+
+- name: install alacritty
+  command: cargo install --git https://github.com/jwilm/alacritty
+  when: alacritty_installed.rc == 1
+
+- name: set alacritty as default terminal 
+  command: gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'

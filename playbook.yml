@@ -12,5 +12,6 @@
         - curl 
 
     - import_tasks: tasks/rust_setup.yml
+    - import_tasks: tasks/alacritty_setup.yml
     - import_tasks: tasks/zshell_setup.yml
     - import_tasks: tasks/yubikey_ssh_setup.yml
