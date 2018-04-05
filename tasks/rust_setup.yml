@@ -1,0 +1,9 @@
+---
+- name: check for rust install
+  command: which cargo
+  register: cargo_installed
+  failed_when: cargo_installed.rc > 1
+
+- name: install rust
+  shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
+  when: cargo_installed.rc == 1
