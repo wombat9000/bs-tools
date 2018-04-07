@@ -12,5 +12,5 @@
   
 - name: copy .zshrc
   copy:
-    src: dotfiles/.zshrc
+    src: dotfiles/zshrc
     dest: ~/.zshrc
