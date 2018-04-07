@@ -1,0 +1,10 @@
+---
+- name: install tmux
+  apt:
+    name: tmux
+  become_user: root
+
+- name: copy tmux conf
+  copy:
+    src: dotfiles/tmux.conf
+    dest: ~/.tmux.conf
