@@ -9,13 +9,8 @@
     repo: ssh://git@github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
   become: yes
-
-- name: create new .zshrc from template
-  copy:
-    src: ~/.oh-my-zsh/templates/zshrc.zsh-template
-    dest: ~/.zshrc
   
-- name: add ssh auth sock config to .zshrc
-  lineinfile:
-    path: ~/.zshrc
-    line: export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+- name: copy .zshrc
+  copy:
+    src: dotfiles/.zshrc
+    dest: ~/.zshrc
