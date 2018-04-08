@@ -15,7 +15,17 @@
     src: dotfiles/zshrc
     dest: ~/.zshrc
 
-- name: clone scm-breeze
+
+- name: clone fzf
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: ~/.fzf
+  become: yes
+
+- name: install fzf
+  command: ~/.fzf/install
+
+- name: clone scm_breeze
   git:
     repo: https://github.com/scmbreeze/scm_breeze.git
     dest: ~/.scm_breeze
