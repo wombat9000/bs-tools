@@ -6,11 +6,20 @@
 
 - name: clone oh-my-zsh
   git:
-    repo: ssh://git@github.com/robbyrussell/oh-my-zsh.git
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
   become: yes
-  
+
 - name: copy .zshrc
   copy:
     src: dotfiles/zshrc
     dest: ~/.zshrc
+
+- name: clone scm-breeze
+  git:
+    repo: https://github.com/scmbreeze/scm_breeze.git
+    dest: ~/.scm_breeze
+  become: yes
+
+- name: install scm-breeze
+  command: ~/.scm_breeze/install.sh
