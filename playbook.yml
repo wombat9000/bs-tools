@@ -9,10 +9,20 @@
       apt:
         name: "{{ item }}"
       with_items: 
-        - curl 
+        - curl
+        - vim
 
     - import_tasks: tasks/rust_setup.yml
     - import_tasks: tasks/alacritty_setup.yml
     - import_tasks: tasks/tmux_setup.yml    
     - import_tasks: tasks/zshell_setup.yml
     - import_tasks: tasks/yubikey_ssh_setup.yml
+
+    - name: install snap apps
+      become_user: root
+      command: snap install {{ item.name }} {{ item.arg }}
+      with_items:
+        - { name: vscode, arg: --classic --beta }
+        - { name: intellij-idea-community, arg: --classic --edge }
+        - { name: spotify, arg: --stable }
+        - { name: docker, arg: --stable }
