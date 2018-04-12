@@ -23,7 +23,7 @@
   become: yes
 
 - name: install fzf
-  command: ~/.fzf/install
+  command: ~/.fzf/install --all
 
 - name: clone scm_breeze
   git:
