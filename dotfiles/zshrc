@@ -29,5 +29,12 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+
+# rbenv config
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+
 # Set ssh auth socket for yubikey auth via gpg agent
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

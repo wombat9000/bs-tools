@@ -11,11 +11,14 @@
       with_items: 
         - curl
         - vim
+        - software-properties-common
 
+ 
     - import_tasks: tasks/rust_setup.yml
     - import_tasks: tasks/alacritty_setup.yml
     - import_tasks: tasks/tmux_setup.yml    
     - import_tasks: tasks/zshell_setup.yml
+    - import_tasks: tasks/install_ruby.yml
     - import_tasks: tasks/yubikey_ssh_setup.yml
 
     - name: install snap apps
