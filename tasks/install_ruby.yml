@@ -1,0 +1,32 @@
+---
+- name: clone rbenv
+  git:
+    repo: https://github.com/rbenv/rbenv.git
+    dest: ~/.rbenv
+  become: yes
+
+- name: clone rbenv-build
+  git:
+    repo: https://github.com/rbenv/ruby-build.git
+    dest: ~/.rbenv/plugins/ruby-build
+  become: yes
+
+- name: check for ruby install
+  command: rbenv global
+  register: ruby_version
+
+- name: install ruby
+  command: rbenv install 2.5.0
+  when: ruby_version.stdout != "2.5.0"
+
+- name: set global ruby version
+  command: rbenv global 2.5.0
+
+- name: install gems needed for jekyll
+  gem:
+    name: "{{ item }}"
+    user_install: no
+    state: present
+  with_items:
+    - bundler
+    - jekyll
