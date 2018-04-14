@@ -20,6 +20,7 @@
     - import_tasks: tasks/zshell_setup.yml
     - import_tasks: tasks/install_ruby.yml
     - import_tasks: tasks/yubikey_ssh_setup.yml
+    - import_tasks: tasks/install_node.yml
 
     - name: install snap apps
       become_user: root

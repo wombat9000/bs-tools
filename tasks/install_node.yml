@@ -1,0 +1,12 @@
+---
+- name: install node & npm
+  apt:
+    name: "{{ item }}"
+  become_user: root
+  with_items:
+    - nodejs
+    - npm
+
+- name: update npm
+  command: npm i -g npm
+  become: yes
